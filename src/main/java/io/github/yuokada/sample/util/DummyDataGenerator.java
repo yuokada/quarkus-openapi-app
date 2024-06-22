@@ -8,12 +8,6 @@ import org.instancio.Instancio;
 
 public class DummyDataGenerator {
 
-    public static Player generatePlayer() {
-        return Instancio.of(Player.class)
-            .generate(field("age"), gen -> gen.ints().range(15, 85))
-            .create();
-    }
-
     public static Player generatePlayer(Long id) {
         return Instancio.of(Player.class)
             .set(field("userId"), id)
@@ -26,5 +20,4 @@ public class DummyDataGenerator {
             .generate(field(Player.class, "age"), gen -> gen.ints().range(15, 85))
             .create();
     }
-
 }
