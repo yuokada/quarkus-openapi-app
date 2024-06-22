@@ -1,0 +1,124 @@
+---
+openapi: 3.0.3
+info:
+  title: Demo API Endpoints
+  description: Here is description of Demo API.
+  contact:
+    name: Demo administrator
+    email: contact@email.example.com
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+  version: 0.1.0
+servers:
+- url: http://localhost:8080
+  description: Local server
+tags:
+- name: Demo App basic API
+  description: Demo App Common APIs
+- name: Demo App stub API
+  description: Demo App Common APIs for development
+paths:
+  /v1/api/players:
+    get:
+      tags:
+      - Demo App basic API
+      summary: Return a list of players
+      description: Return a list of players
+      responses:
+        "200":
+          description: Returns a list of players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+  /v1/api/players/{id}:
+    get:
+      tags:
+      - Demo App basic API
+      summary: Return the detail of a player
+      description: Return the detail of a player
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          description: Returns the detail of a player
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    format: int64
+                    type: integer
+                  name:
+                    type: string
+                  age:
+                    format: int32
+                    type: integer
+  /v1/api/stub/players:
+    get:
+      tags:
+      - Demo App stub API
+      summary: Return a list of players
+      description: Return a list of players
+      responses:
+        "200":
+          description: Returns a list of players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+      deprecated: true
+  /v1/api/stub/players/{id}:
+    get:
+      tags:
+      - Demo App stub API
+      summary: Return the detail of a player
+      description: Return the detail of a player
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          description: Returns the detail of a player
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    format: int64
+                    type: integer
+                  name:
+                    type: string
+                  age:
+                    format: int32
+                    type: integer
+      deprecated: true
+components:
+  schemas:
+    Player:
+      type: object
+      properties:
+        userId:
+          format: int64
+          type: integer
+        name:
+          type: string
+        age:
+          format: int32
+          type: integer
