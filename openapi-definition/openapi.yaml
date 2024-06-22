@@ -33,7 +33,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Player"
+                  $ref: "#/components/schemas/Player json overview"
   /v1/api/players/{id}:
     get:
       tags:
@@ -55,14 +55,20 @@ paths:
               schema:
                 type: object
                 properties:
-                  userId:
+                  id:
                     format: int64
-                    type: integer
+                    description: The user Id
+                    type: number
                   name:
+                    maxLength: 64
+                    minLength: 4
                     type: string
                   age:
-                    format: int32
-                    type: integer
+                    format: short
+                    description: The user's age
+                    maximum: 150
+                    minimum: 20
+                    type: number
   /v1/api/stub/players:
     get:
       tags:
@@ -77,7 +83,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Player"
+                  $ref: "#/components/schemas/Player json overview"
       deprecated: true
   /v1/api/stub/players/{id}:
     get:
@@ -100,25 +106,37 @@ paths:
               schema:
                 type: object
                 properties:
-                  userId:
+                  id:
                     format: int64
-                    type: integer
+                    description: The user Id
+                    type: number
                   name:
+                    maxLength: 64
+                    minLength: 4
                     type: string
                   age:
-                    format: int32
-                    type: integer
+                    format: short
+                    description: The user's age
+                    maximum: 150
+                    minimum: 20
+                    type: number
       deprecated: true
 components:
   schemas:
-    Player:
+    Player json overview:
       type: object
       properties:
-        userId:
+        id:
           format: int64
-          type: integer
+          description: The user Id
+          type: number
         name:
+          maxLength: 64
+          minLength: 4
           type: string
         age:
-          format: int32
-          type: integer
+          format: short
+          description: The user's age
+          maximum: 150
+          minimum: 20
+          type: number
